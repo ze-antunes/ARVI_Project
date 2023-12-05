@@ -53,7 +53,7 @@
     <a-scene
       cursor="rayOrigin: mouse"
       networked-scene="
-                      serverURL: https://arvi-project.glitch.me; 
+                      serverURL: https://networked-teste.glitch.me; 
                       debug: true;
                       adapter: easyrtc;
                       audio: false
@@ -140,7 +140,7 @@
         networked="template:#rig-template;"
       >
         <a-entity
-          id="player"
+          id="camera"
           camera
           position="0 1.6 0"
           look-controls
@@ -151,14 +151,14 @@
         </a-entity>
         <!-- here we add the user's local hands! These two entities are all that is needed. -->
         <a-entity
-          id="my-tracked-left-hand"
+          id="left-hand"
           sphere-collider="objects: a-box"
           super-hands
           networked-hand-controls="hand:left;color:gold;"
           networked="template:#left-hand-default-template"
         ></a-entity>
         <a-entity
-          id="my-tracked-right-hand"
+          id="right-hand"
           sphere-collider="objects: a-box"
           super-hands
           networked-hand-controls="hand:right;handModelStyle:controller;"

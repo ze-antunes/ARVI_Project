@@ -1,3 +1,9 @@
+let playerCamera = document.getElementById("camera");
+let playerLeftHand = document.getElementById("left-hand");
+let playerRightHand = document.getElementById("right-hand");
+
+console.log(playerRightHand)
+
 let getModelDimensions = (letterModelID) => {
     return new Promise((resolve, reject) => {
         document.addEventListener('DOMContentLoaded', function () {

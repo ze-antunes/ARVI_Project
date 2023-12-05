@@ -4,14 +4,14 @@ let playerRightHand = document.getElementById("right-hand");
 let menuScreen = document.getElementById("screen");
 let test_right_hand_coord = document.getElementById("test_right_hand_coord");
 
-console.log(playerRightHand.object3D.position.x);
+console.log(playerRightHand);
 
 let updateMenuPosition = () => {
     setInterval(() => {
         // console.log(playerCamera.object3D.position.x);
         // console.log(playerRightHand);
         $(menuScreen).attr('position', `${playerCamera.object3D.position.x} 1.6 ${playerCamera.object3D.position.z - 3}`);
-        $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x.toFixed(2)} ${playerRightHand.object3D.position.y.toFixed(2)} ${playerRightHand.object3D.position.z.toFixed(2)}`);
+        $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x.toFixed(2)} \n${playerRightHand.object3D.position.y.toFixed(2)} \n${playerRightHand.object3D.position.z.toFixed(2)}`);
     }, 1000)
 };
 
