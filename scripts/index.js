@@ -14,7 +14,7 @@ let updateMenuPosition = () => {
         $(menuScreen).attr('position', `${playerCamera.object3D.position.x} 1.6 ${playerCamera.object3D.position.z - 3}`);
         $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x.toFixed(2)} \n${playerRightHand.object3D.position.y.toFixed(2)} \n${playerRightHand.object3D.position.z.toFixed(2)}`);
         $(test_right_hand_rotation).attr('value', `${playerRightHand.object3D.rotation._x.toFixed(2)} \n${playerRightHand.object3D.rotation._y.toFixed(2)} \n${playerRightHand.object3D.rotation._z.toFixed(2)}`);
-    }, 1000)
+    }, 1)
 };
 
 // window.addEventListener("mousemove", function (event) {
