@@ -1,0 +1,26 @@
+{
+  "name": "voice_to_text_to_chatgpt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon express.js",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "gltf-pipeline": "^4.1.0",
+    "openai": "^4.0.0",
+    "vite": "^5.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "three": "^0.158.0"
+  }
+}
