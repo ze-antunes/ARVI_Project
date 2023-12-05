@@ -11,7 +11,7 @@ let updateMenuPosition = () => {
         // console.log(playerCamera.object3D.position.x);
         // console.log(playerRightHand);
         $(menuScreen).attr('position', `${playerCamera.object3D.position.x} 1.6 ${playerCamera.object3D.position.z - 3}`);
-        $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x} ${playerRightHand.object3D.position.y} ${playerRightHand.object3D.position.z}`);
+        $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x.toFixed(2)} ${playerRightHand.object3D.position.y.toFixed(2)} ${playerRightHand.object3D.position.z.toFixed(2)}`);
     }, 1000)
 };
 
