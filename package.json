@@ -1,4 +1,5 @@
 {
+  "homepage": "https://ze-antunes.github.io/ARVI_Project/",
   "name": "voice_to_text_to_chatgpt",
   "version": "1.0.0",
   "description": "",
@@ -6,7 +7,9 @@
   "scripts": {
     "start": "nodemon express.js",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,7 @@
     "vite": "^5.0.4"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.0",
     "nodemon": "^3.0.1",
     "three": "^0.158.0"
   }
