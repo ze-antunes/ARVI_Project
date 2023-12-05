@@ -3,6 +3,7 @@ let playerLeftHand = document.getElementById("left-hand");
 let playerRightHand = document.getElementById("right-hand");
 let menuScreen = document.getElementById("screen");
 let test_right_hand_coord = document.getElementById("test_right_hand_coord");
+let test_right_hand_rotation = document.getElementById("test_right_hand_rotation");
 
 console.log(playerRightHand);
 
@@ -12,6 +13,7 @@ let updateMenuPosition = () => {
         // console.log(playerRightHand);
         $(menuScreen).attr('position', `${playerCamera.object3D.position.x} 1.6 ${playerCamera.object3D.position.z - 3}`);
         $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x.toFixed(2)} \n${playerRightHand.object3D.position.y.toFixed(2)} \n${playerRightHand.object3D.position.z.toFixed(2)}`);
+        $(test_right_hand_rotation).attr('value', `${playerRightHand.object3D.rotation._x.toFixed(2)} \n${playerRightHand.object3D.rotation._y.toFixed(2)} \n${playerRightHand.object3D.rotation._z.toFixed(2)}`);
     }, 1000)
 };
 
