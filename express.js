@@ -15,7 +15,7 @@ const openai = new OpenAI({
 app.post("/find-complexity", async (req, res) => {
     try {
         const { prompt } = req.body;
-        const response = await await openai.completions.create({
+        const response = await openai.completions.create({
             model: "text-davinci-003",
             prompt: `
                     ${prompt}

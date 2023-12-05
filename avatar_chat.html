@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="test.css" />
     <title>Avatar Chat</title>
   </head>
   <body>
@@ -22,6 +22,11 @@
         <img
           id="speechBubbleImg"
           src="./assets/imgs/textures/speech_bubble.png"
+          alt="speech_bubble"
+        />
+        <img
+          id="player_interface_img"
+          src="./assets/imgs/textures/player_interface.png"
           alt="speech_bubble"
         />
       </a-assets>
@@ -65,8 +70,8 @@
             anchor="center"
             baseline="top"
             value=""
-            color="black"
-            wrap-count="23"
+            color="#636363"
+            wrap-count="30"
           >
           </a-text>
         </a-plane>
@@ -81,7 +86,28 @@
           camera
           wasd-controls
           look-controls
-        ></a-entity>
+        >
+          <a-plane
+            id="player_interface"
+            src="#player_interface_img"
+            position="0 -1 -2"
+            width="3"
+            rotation="-55 0 0"
+            height="1"
+          >
+            <a-text
+            id="player_voice_input"
+              position="0 .2 0"
+              width="3"
+              value=""
+              wrap-count="50"
+              color="#636363"
+              align="center"
+              anchor="center"
+            >
+            </a-text>
+          </a-plane>
+        </a-entity>
         <!-- hand controls -->
         <a-entity id="left-hand" oculus-touch-controls="hand: left"></a-entity>
         <a-entity
@@ -93,17 +119,17 @@
       </a-entity>
     </a-scene>
 
-    <div class="voice_to_text"> 
-		<h1>Voice to Text Converter</h1>
-    <div name="" id="convert_text"></div>
-    <button id="click_to_record">Voice To Text</button>
-    <button id="request">Do request</button>
-    <textarea id="speechText" placeholder="Write anything here..."></textarea>
-    <div class="row">
-      <select id="voiceSelect"></select>
-      <button id="listenBttn">Listen</button>
+    <div class="voice_to_text">
+      <h1>Voice to Text Converter</h1>
+      <div name="" id="convert_text"></div>
+      <button id="click_to_record">Voice To Text</button>
+      <button id="request">Do request</button>
+      <textarea id="speechText" placeholder="Write anything here..."></textarea>
+      <div class="row">
+        <select id="voiceSelect"></select>
+        <button id="listenBttn">Listen</button>
+      </div>
     </div>
-  </div>
 
     <script src="./scripts/voice_to_text.js"></script>
     <script src="./scripts/text_to_voice.js"></script>

@@ -21,5 +21,16 @@ let updateMenuPosition = () => {
 updateMenuPosition();
 
 let openSettings = () => {
-console.log("openSettings");
+    console.log("openSettings");
+    const settingsMenu = document.getElementById('settingsMenu');
+
+    // Toggle the open state
+    settingsMenu.open = !settingsMenu.open;
+    console.log(settingsMenu.open);
+
+    if (settingsMenu.open) {
+        settingsMenu.setAttribute("scale", "1 1 1")
+    } else {
+        settingsMenu.setAttribute("scale", "0 0 0")
+    }
 }

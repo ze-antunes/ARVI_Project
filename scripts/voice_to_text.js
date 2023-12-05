@@ -19,6 +19,7 @@ click_to_record.addEventListener('click', function () {
             .join('')
 
         document.getElementById("convert_text").innerText = transcript;
+        document.getElementById("player_voice_input").setAttribute("value", transcript);
         console.log(transcript);
         voiceText = transcript;
     });
