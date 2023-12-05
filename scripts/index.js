@@ -2,14 +2,17 @@ let playerCamera = document.getElementById("camera");
 let playerLeftHand = document.getElementById("left-hand");
 let playerRightHand = document.getElementById("right-hand");
 let menuScreen = document.getElementById("screen");
+let test_right_hand_coord = document.getElementById("test_right_hand_coord");
 
-console.log(playerRightHand);
+console.log(playerRightHand.object3D.position.x);
 
 let updateMenuPosition = () => {
     setInterval(() => {
         // console.log(playerCamera.object3D.position.x);
+        // console.log(playerRightHand);
         $(menuScreen).attr('position', `${playerCamera.object3D.position.x} 1.6 ${playerCamera.object3D.position.z - 3}`);
-    }, 1)
+        $(test_right_hand_coord).attr('value', `${playerRightHand.object3D.position.x} ${playerRightHand.object3D.position.y} ${playerRightHand.object3D.position.z}`);
+    }, 1000)
 };
 
 // window.addEventListener("mousemove", function (event) {
