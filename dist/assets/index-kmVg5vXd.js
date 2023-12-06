@@ -12,4 +12,4 @@
                                 gltf-model="#${n[o]}_"
                                 rotation="0 90 0"
                             ></a-entity>
-                            `),e.innerHTML=t,a.append(r),c.append(e)}f(s)}function f(s){const n=s.split("");let o=0,r=0;for(let e=0;e<n.length;e++){let t;n[e]===n[e].toUpperCase()?t=document.getElementById(`id_${n[e]}_${e}`):n[e]===n[e].toLowerCase()&&(t=document.getElementById(`id_${n[e]}_${e}`)),t&&u(t.id).then(i=>{r+=i.width/2+.1+o,t.setAttribute("position",`0 0 -${r}`),o=i.width/2}).catch(i=>{console.error(i)})}}let g="Hello";m(g);
+                            `),e.innerHTML=t,a.append(r),c.append(e)}f(s)}function f(s){const n=s.split("");let o=0,r=0;for(let e=0;e<n.length;e++){let t;n[e]===n[e].toUpperCase()?t=document.getElementById(`id_${n[e]}_${e}`):n[e]===n[e].toLowerCase()&&(t=document.getElementById(`id_${n[e]}_${e}`)),t&&u(t.id).then(i=>{r+=i.width/2+.04+o,t.setAttribute("position",`0 0 -${r}`),o=i.width/2}).catch(i=>{console.error(i)})}}let g="Banana";m(g);

@@ -7,8 +7,6 @@ console.log(playerRightHand);
 
 let updateMenuPosition = () => {
     setInterval(() => {
-        // console.log(playerCamera.object3D.position.x);
-        // console.log(playerRightHand);
         $(menuScreen).attr('position', `${playerCamera.object3D.position.x} 1.6 ${playerCamera.object3D.position.z - 3}`);
     }, 1)
 };

@@ -36,13 +36,15 @@
     </style>
   </head>
   <body>
-    <label for="microphoneSelect">Select Microphone:</label>
+    <!-- <label for="microphoneSelect">Select Microphone:</label>
     <select id="microphoneSelect"></select>
 
-    <div id="word-container">Click the button to get a word...</div>
-    <button id="get-word-btn" onclick="getRandomWord()">Get Word</button>
+    <hr> -->
 
-    <hr />
+    <!-- <div id="word-container">Click the button to get a word...</div>
+    <button id="get-word-btn" onclick="getRandomWord()">Get Word</button> -->
+
+    <!-- <hr /> -->
 
     <div id="word-container2">Click the button to get a word...</div>
     <button id="get-word-btn2" onclick="getRandomWord2()">Get Word</button>
@@ -56,29 +58,29 @@
     <div id="definition-container"></div>
 
     <script>
-      const wordsApiKey = "cdf24e47cbmsh8ca91dddad64476p11b19ejsn782380f76b61"; // Replace with your WordsAPI key
-      const WordsApiEndpoint =
-        "https://wordsapiv1.p.rapidapi.com/words/?random=true";
+      // const wordsApiKey = "cdf24e47cbmsh8ca91dddad64476p11b19ejsn782380f76b61"; // Replace with your WordsAPI key
+      // const WordsApiEndpoint =
+      //   "https://wordsapiv1.p.rapidapi.com/words/?random=true";
 
-      function getRandomWord() {
-        fetch(WordsApiEndpoint, {
-          method: "GET",
-          headers: {
-            "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-            "X-RapidAPI-Key": wordsApiKey
-          }
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            const word = data.word;
-            displayWord(word);
-          })
-          .catch((error) => console.error("Error fetching word:", error));
-      }
+      // function getRandomWord() {
+      //   fetch(WordsApiEndpoint, {
+      //     method: "GET",
+      //     headers: {
+      //       "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+      //       "X-RapidAPI-Key": wordsApiKey
+      //     }
+      //   })
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       const word = data.word;
+      //       displayWord(word);
+      //     })
+      //     .catch((error) => console.error("Error fetching word:", error));
+      // }
 
-      function displayWord(word) {
-        document.getElementById("word-container").innerText = word;
-      }
+      // function displayWord(word) {
+      //   document.getElementById("word-container").innerText = word;
+      // }
 
       const DicionaryApiKey = "001071f4-41e2-48c6-97cc-04f425b282d1"; // Replace with your Merriam-Webster API key
       const DicionaryApiEndpoint =
@@ -131,7 +133,7 @@
         document.getElementById("word-container2").innerText = word;
       }
     </script>
-    <script src="./scripts/getWord.js"></script>
-    <script src="./scripts/microphonesAvailable.js"></script>
+    <!-- <script src="./scripts/getWord.js"></script> -->
+    <!-- <script src="./scripts/microphonesAvailable.js"></script> -->
   </body>
 </html>
