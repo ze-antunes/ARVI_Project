@@ -143,15 +143,19 @@ for (let i = 0; i < lettersElementIdArray.length; i++) {
         initialPosition = { ...element.object3D.position };
 
         interval = setInterval(() => {
-            // Calculate the relative movement between the initial position and the controller
-            const deltaX = playerRightHand.object3D.position.x - initialPosition.x;
-            const deltaY = playerRightHand.object3D.position.y - initialPosition.y;
+            // Get the forward vector of the right hand controller
+            const controllerForward = new THREE.Vector3();
+            playerRightHand.object3D.getWorldDirection(controllerForward);
 
-            // Update the element's position based on the relative movement
+            // Scale the forward vector based on the desired movement speed
+            const movementSpeed = 0.01; // Adjust as needed
+            controllerForward.multiplyScalar(movementSpeed);
+
+            // Update the element's position based on the controller's forward vector
             element.setAttribute("position", {
-                x: initialPosition.x + deltaX,
-                y: initialPosition.y + deltaY,
-                z: element.getAttribute("position").z // Maintain the current z position
+                x: initialPosition.x + controllerForward.x,
+                y: initialPosition.y + controllerForward.y,
+                z: initialPosition.z + controllerForward.z
             });
         }, 16); // Adjust the interval as needed
     });
