@@ -136,26 +136,33 @@ getIndividualLetters(inputString);
 for (let i = 0; i < lettersElementIdArray.length; i++) {
     let element = document.getElementById(lettersElementIdArray[i]);
     let interval;
-    let initialPosition;
+    let initialRotation;
 
     element.addEventListener("mousedown", () => {
-        // Store the initial position of the element
-        initialPosition = { ...element.object3D.position };
+        // Store the initial rotation of the controller
+        initialRotation = { ...playerRightHand.object3D.rotation };
 
         interval = setInterval(() => {
-            // Get the forward vector of the right hand controller
-            const controllerForward = new THREE.Vector3();
-            playerRightHand.object3D.getWorldDirection(controllerForward);
+            // Calculate the relative rotation between the initial rotation and the current rotation of the controller
+            const deltaRotationX = playerRightHand.object3D.rotation.x - initialRotation.x;
+            const deltaRotationY = playerRightHand.object3D.rotation.y - initialRotation.y;
+            const deltaRotationZ = playerRightHand.object3D.rotation.z - initialRotation.z;
 
-            // Scale the forward vector based on the desired movement speed
-            const movementSpeed = 0.01; // Adjust as needed
-            controllerForward.multiplyScalar(movementSpeed);
+            // Update the element's rotation based on the relative rotation
+            element.setAttribute("rotation", {
+                x: initialRotation.x + deltaRotationX,
+                y: initialRotation.y + deltaRotationY,
+                z: initialRotation.z + deltaRotationZ,
+            });
 
-            // Update the element's position based on the controller's forward vector
+            // Update the element's position based on the laser orientation
+            const laserOrientation = new THREE.Vector3(0, 0, -1);
+            laserOrientation.applyQuaternion(playerRightHand.object3D.quaternion);
+            const newPosition = laserOrientation.multiplyScalar(2); // Adjust the distance as needed
             element.setAttribute("position", {
-                x: initialPosition.x + controllerForward.x,
-                y: initialPosition.y + controllerForward.y,
-                z: initialPosition.z + controllerForward.z
+                x: newPosition.x,
+                y: newPosition.y,
+                z: element.getAttribute("position").z, // Maintain the current z position
             });
         }, 16); // Adjust the interval as needed
     });
