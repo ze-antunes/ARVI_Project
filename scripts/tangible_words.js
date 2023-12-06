@@ -139,7 +139,7 @@ for (let i = 0; i < lettersElementIdArray.length; i++){
     let interval;
     element.addEventListener("mousedown", () => {
         interval = setInterval(() => {
-            element.object3D.position.x = playerRightHand.object3D.position.x + (playerRightHand.object3D.position.x - element.object3D.position.x);
+            element.object3D.position.x = playerRightHand.object3D.position.x + (element.object3D.position.x - playerRightHand.object3D.position.x);
         }, 1)
     })
     element.addEventListener("mouseup", () => {
