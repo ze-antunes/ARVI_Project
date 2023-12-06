@@ -2,8 +2,6 @@ let scene = document.querySelector("a-scene");
 let assets = document.querySelector("a-assets");
 let playerRightHand = document.getElementById("right-hand");
 
-let lettersElementIdArray = [];
-
 function shuffleString(inputString) {
     const characters = inputString.split('');
 
@@ -21,6 +19,8 @@ function getIndividualLetters(str) {
     const shuffledString = shuffleString(str);
     const lettersArray = shuffledString.split('');
 
+    let idTest
+
     // Add each letter separately
     for (let i = 0; i < lettersArray.length; i++) {
         let assetSrc = document.createElement("a-asset-item");
@@ -36,6 +36,7 @@ function getIndividualLetters(str) {
             htmlString = `
             <a-entity
                 id="id_${lettersArray[i]}_${i}"
+                grabbable stretchable draggable droppable 
                 color="white"
                 gltf-model="#${lettersArray[i]}"
                 rotation="90 0 0"
@@ -45,7 +46,7 @@ function getIndividualLetters(str) {
             ></a-entity>
             `;
 
-            lettersElementIdArray.push(`id_${lettersArray[i]}_${i}`)
+            idTest = `id_${lettersArray[i]}_${i}`
         } else if (lettersArray[i] === lettersArray[i].toLowerCase()) {
             assetSrc.setAttribute("id", `${lettersArray[i]}_`);
             assetSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters/${lettersArray[i]}_.glb`);
@@ -53,6 +54,7 @@ function getIndividualLetters(str) {
             htmlString = `
             <a-entity
                 id="id_${lettersArray[i]}_${i}"
+                grabbable stretchable draggable droppable 
                 color="white"
                 gltf-model="#${lettersArray[i]}_"
                 rotation="90 0 0"
@@ -61,14 +63,14 @@ function getIndividualLetters(str) {
                 animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 1.1 1.1 1.1; to: 1 1 1; startEvents: mouseleave"
                 ></a-entity>
             `;
-
-            lettersElementIdArray.push(`id_${lettersArray[i]}_${i}`)
         }
 
         letterModel.innerHTML = htmlString;
         assets.append(assetSrc);
         scene.append(letterModel);
     }
+
+    console.log(document.getElementById(idTest))
 }
 
 
@@ -133,29 +135,4 @@ function calculateDistance(x1, y1, x2, y2) {
 let inputString = "Banana";
 getIndividualLetters(inputString);
 
-for (let i = 0; i < lettersElementIdArray.length; i++) {
-    let element = document.getElementById(lettersElementIdArray[i]);
-    let interval;
-
-    element.addEventListener("mousedown", () => {
-        // Start moving the element with the laser pointer
-        interval = setInterval(() => {
-            // Get the laser pointer position in world coordinates
-            const laserPosition = playerRightHand.components['laser-controls'].raycaster.ray.origin;
-
-            // Update the element's position based on the laser pointer
-            element.object3D.position.x = laserPosition.x;
-            element.object3D.position.y = laserPosition.y;
-        }, 16); // Use a suitable interval, e.g., 60 FPS
-    });
-
-    element.addEventListener("mouseup", () => {
-        // Stop moving the element when the mouse is released
-        clearInterval(interval);
-    });
-
-    element.addEventListener("mouseleave", () => {
-        // Stop moving the element when the mouse leaves the element
-        clearInterval(interval);
-    });
-}
+console.log(playerRightHand)
