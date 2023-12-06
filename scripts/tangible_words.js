@@ -125,8 +125,79 @@ let inputString = "Banana";
 getIndividualLetters(inputString);
 
 let grabLetter = (id) => {
-    console.log(id.object3D.position);
-    console.log(playerRightHand.object3D.position);
-    
-    id.object3D.position.x += playerRightHand.object3D.position.x;
+    console.log(id);
+    // console.log(id.object3D.position);
+    // console.log(playerRightHand.object3D.position);
+    id.addEventListener("mousemove", () => {
+        console.log("teste")
+    })
+    setInterval(() => {
+        id.object3D.position.x += playerRightHand.object3D.position.x;
+    }, 1)
 }
+
+AFRAME.registerComponent('grabbable', {
+    init: function () {
+        this.el.addEventListener('mousedown', this.grabObject.bind(this));
+        this.el.addEventListener('mouseup', this.releaseObject.bind(this));
+    },
+    grabObject: function () {
+        this.el.setAttribute('kinematic-body', 'enabled', false);
+        this.el.setAttribute('dynamic-body', 'enabled', true);
+    },
+    releaseObject: function () {
+        this.el.setAttribute('kinematic-body', 'enabled', true);
+        this.el.setAttribute('dynamic-body', 'enabled', false);
+    },
+});
+
+AFRAME.registerComponent('stretchable', {
+    init: function () {
+        this.originalScale = this.el.getAttribute('scale');
+        this.el.addEventListener('stretchstart', this.stretchStart.bind(this));
+        this.el.addEventListener('stretchend', this.stretchEnd.bind(this));
+    },
+    stretchStart: function (event) {
+        this.stretched = true;
+    },
+    stretchEnd: function (event) {
+        this.stretched = false;
+    },
+    tick: function () {
+        if (this.stretched) {
+            const scale = this.el.getAttribute('scale');
+            scale.x = this.originalScale.x * event.detail.stretch;
+            scale.y = this.originalScale.y * event.detail.stretch;
+            scale.z = this.originalScale.z * event.detail.stretch;
+            this.el.setAttribute('scale', scale);
+        }
+    },
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const movableObject = document.getElementById('movableObject');
+    let isDragging = false;
+
+    movableObject.addEventListener('mousedown', function () {
+        isDragging = true;
+    });
+
+    movableObject.addEventListener('mouseup', function () {
+        isDragging = false;
+    });
+
+    document.addEventListener('controllerconnected', function (event) {
+        const controller = event.detail;
+        const hand = controller.getAttribute('hand');
+        const handEntity = document.getElementById(hand);
+
+        handEntity.addEventListener('axismove', function (event) {
+            if (isDragging) {
+                const position = movableObject.getAttribute('position');
+                position.x += event.detail.axis[0] * 0.1; // Adjust the speed as needed
+                position.y += event.detail.axis[1] * 0.1;
+                movableObject.setAttribute('position', position);
+            }
+        });
+    });
+});
