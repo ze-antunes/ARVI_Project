@@ -4,8 +4,6 @@ let playerRightHand = document.getElementById("right-hand");
 let scene = document.querySelector("a-scene");
 let assets = document.querySelector("a-assets");
 
-console.log(playerRightHand)
-
 let getModelDimensions = (letterModelID) => {
     return new Promise((resolve, reject) => {
         document.addEventListener('DOMContentLoaded', function () {
@@ -13,6 +11,8 @@ let getModelDimensions = (letterModelID) => {
             modelEntity.addEventListener('model-loaded', function () {
                 // Access the mesh
                 const mesh = modelEntity.getObject3D('mesh');
+                console.log(modelEntity)
+                console.log(mesh)
 
                 // Check if the mesh exists and has geometry
                 if (mesh && mesh.children) {
@@ -37,66 +37,47 @@ let getModelDimensions = (letterModelID) => {
     });
 };
 
-// getModelDimensions('letter')
-//     .then(dimensions => {
-//         console.log('Width:', dimensions.width);
-//         console.log('Height:', dimensions.height);
-//         console.log('Depth:', dimensions.depth);
-//     })
-//     .catch(error => {
-//         console.error(error);
-//     });
-
-
-
-
 function getIndividualLetters(str) {
     // Split the string into an array of individual letters
     const lettersArray = str.split('');
 
     // Add each letter separately
     for (let i = 0; i < lettersArray.length; i++) {
-        let assetObjSrc = document.createElement("a-asset-item");
-        let assetMtlSrc = document.createElement("a-asset-item");
+        let assetSrc = document.createElement("a-asset-item");
         let letterModel = document.createElement("a-entity");
         let htmlString;
         if (lettersArray[i] === lettersArray[i].toUpperCase()) {
-            assetObjSrc.setAttribute("id", `${lettersArray[i]}-obj`);
-            assetMtlSrc.setAttribute("id", `${lettersArray[i]}-mtl`);
-            assetObjSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/${lettersArray[i]}.obj`);
-            assetMtlSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/${lettersArray[i]}.mtl`);
+            assetSrc.setAttribute("id", `${lettersArray[i]}`);
+            // assetSrc.setAttribute("src", `../assets/3D_models/letters/${lettersArray[i]}.glb`);
+            assetSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters/${lettersArray[i]}.glb`);
 
             htmlString = `
-                            <a-obj-model
+                            <a-entity
                                 id="id_${lettersArray[i]}_${i}"
                                 color="white"
-                                position="${i} 1 -1.5"
-                                src="#${lettersArray[i]}-obj"
-                                mtl="#${lettersArray[i]}-mtl"
-                            ></a-obj-model>
+                                gltf-model="#${lettersArray[i]}"
+                                rotation="0 90 0"
+                            ></a-entity>
                             `;
         } else if (lettersArray[i] === lettersArray[i].toLowerCase()) {
-            assetObjSrc.setAttribute("id", `${lettersArray[i]}_-obj`);
-            assetMtlSrc.setAttribute("id", `${lettersArray[i]}_-mtl`);
-            assetObjSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/${lettersArray[i]}_.obj`);
-            assetMtlSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/${lettersArray[i]}_.mtl`);
+            assetSrc.setAttribute("id", `${lettersArray[i]}_`);
+            // assetSrc.setAttribute("src", `../assets/3D_models/letters/${lettersArray[i]}_.glb`);
+            assetSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters/${lettersArray[i]}_.glb`);
 
             htmlString = `
-                            <a-obj-model
+                            <a-entity
                                 id="id_${lettersArray[i]}_${i}"
                                 color="white"
-                                position="${i} 1 -1.5"
-                                src="#${lettersArray[i]}_-obj"
-                                mtl="#${lettersArray[i]}_-mtl"
-                            ></a-obj-model>
+                                gltf-model="#${lettersArray[i]}_"
+                                rotation="0 90 0"
+                            ></a-entity>
                             `;
         }
 
         letterModel.innerHTML = htmlString;
-        assets.append(assetObjSrc);
-        assets.append(assetMtlSrc);
-        playerRightHand.append(letterModel);
+        assets.append(assetSrc);
         // scene.append(letterModel);
+        playerRightHand.append(letterModel);
     }
     ajustKerning(str);
 }
@@ -124,7 +105,7 @@ function ajustKerning(str) {
                     // console.log("halfPreviousLetterWidth: ", halfPreviousLetterWidth);
                     // Set the position attribute with the cumulative width
                     cumulativeWidth += dimensions.width / 2 + 0.1 + halfPreviousLetterWidth;  // Accumulate the width
-                    letterModelElement.setAttribute("position", `${cumulativeWidth} 1 -1.5`);
+                    letterModelElement.setAttribute("position", `0 0 -${cumulativeWidth}`);
                     // console.log(letterModelElement.getAttribute("position"))
                     halfPreviousLetterWidth = dimensions.width / 2;
                     // console.log("width ", dimensions.width);

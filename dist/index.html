@@ -15,6 +15,14 @@
     <a-scene cursor="rayOrigin: mouse">
       <a-assets>
         <a-asset-item
+          id="baltazar-obj"
+          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/A.obj"
+        ></a-asset-item>
+        <a-asset-item
+          id="baltazar-mtl"
+          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/A.mtl"
+        ></a-asset-item>
+        <a-asset-item
           id="avatar"
           src="https://raw.githubusercontent.com/ze-antunes/ARVI_Assets/main/3D_Models/smol_ame_-_amelia_watson_holomyth/scene.gltf"
         ></a-asset-item>
@@ -338,6 +346,13 @@
           oculus-touch-controls="hand: right"
           laser-controls="hand: right"
         >
+          <a-obj-model
+            src="#baltazar-obj"
+            mtl="#baltazar-mtl"
+            position="0 0 -0.32"
+            rotation="0 0 0"
+            scale="0.5 0.5 0.5"
+          ></a-obj-model>
           <a-entity
             gltf-model="#avatar"
             position="0 0 -0.5"

@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/networked-aframe@^0.11.0/dist/networked-aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
-    
 
     <script>
       /* global AFRAME, NAF */
@@ -61,23 +60,6 @@
                     "
     >
       <a-assets>
-        <a-asset-item
-          id="baltazar-obj"
-          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/A.obj"
-        ></a-asset-item>
-        <a-asset-item
-          id="baltazar-mtl"
-          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/A.mtl"
-        ></a-asset-item>
-        <img
-          id="text"
-          src="https://cdn.glitch.com/80978ab7-9db6-45ae-bc43-4fab16bdbb6e%2Fx.png?v=1523893000643"
-        />
-        <a-asset-item
-          id="A"
-          src=".\assets\3D_models\letters\A.glb"
-        ></a-asset-item>
-
         <template id="rig-template">
           <a-entity></a-entity>
         </template>
@@ -133,14 +115,6 @@
           </a-entity>
         </template>
       </a-assets>
-
-      <a-obj-model
-          src="#baltazar-obj"
-          mtl="#baltazar-mtl"
-          scale="2 2 2"
-          rotation="0 0 0"
-          position="0 1.6 -2"
-        ></a-obj-model>
 
       <a-entity
         id="env"
