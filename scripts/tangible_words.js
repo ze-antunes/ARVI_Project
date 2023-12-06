@@ -105,16 +105,16 @@ function displayDefinition(definition) {
 }
 
 
-function getRandomWord2() {
+function getRandomWord() {
     fetch("https://random-word-api.herokuapp.com/word")
         .then((response) => response.json())
         .then((data) => {
             const word = data[0];
-            displayWord2(word);
+            displayWord(word);
         })
         .catch((error) => {
             console.error("Error fetching word:", error)
-            displayWord2(error);
+            displayWord(error);
         });
 }
 
@@ -125,36 +125,19 @@ function displayWord(word) {
 let inputString = "Banana";
 getIndividualLetters(inputString);
 
-let currentIndex = 0;
-let dragObject = (object) => {
-    object.addEventListener("mousedown", () => {
-        let posX = object.object3D.position.x + playerRightHand.object3D.position.x
-        let posY = object.object3D.position.y + playerRightHand.object3D.position.y
-        let posZ = object.object3D.position.z
-        console.log(object.object3D.position);
-        object.setAttribute('position', { x: posX, y: posY, z: posZ });
+for (let i = 0; i < lettersElementIdArray.length; i++){
+    console.log(lettersElementIdArray[i]);
+    let element = document.getElementById(lettersElementIdArray[i]);
+    let interval;
+    element.addEventListener("mousedown", () => {
+        interval = setInterval(() => {
+            element.object3D.position.x += playerRightHand.object3D.position.x;
+        }, 1)
+    })
+    element.addEventListener("mouseup", () => {
+        clearInterval(interval);
+    })
+    element.addEventListener("mouseleave", () => {
+        clearInterval(interval);
     })
 }
-
-function updatePosition() {
-    // Update position for the current element
-    if (currentIndex < lettersElementIdArray.length) {
-        const element = lettersElementIdArray[currentIndex];
-        let tagElement = document.getElementById(element)
-        dragObject(tagElement);
-        // let posX = tagElement.object3D.position.x + playerRightHand.object3D.position.x
-        // let posY = tagElement.object3D.position.y + playerRightHand.object3D.position.y
-        // let posZ = tagElement.object3D.position.z
-        // tagElement.setAttribute('position', { x: , y: , z:  });
-        // console.log(tagElement.object3D.position.x)
-        currentIndex++;
-    } else {
-        currentIndex = 0; // Reset to the beginning when reaching the end
-    }
-
-    // Request the next animation frame
-    requestAnimationFrame(updatePosition);
-}
-
-// Start the animation loop
-updatePosition();
