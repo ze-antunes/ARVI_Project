@@ -133,19 +133,34 @@ function calculateDistance(x1, y1, x2, y2) {
 let inputString = "Banana";
 getIndividualLetters(inputString);
 
-for (let i = 0; i < lettersElementIdArray.length; i++){
-    console.log(lettersElementIdArray[i]);
+for (let i = 0; i < lettersElementIdArray.length; i++) {
     let element = document.getElementById(lettersElementIdArray[i]);
     let interval;
+    let initialPosition;
+
     element.addEventListener("mousedown", () => {
+        // Store the initial position of the element
+        initialPosition = { ...element.object3D.position };
+
         interval = setInterval(() => {
-            element.object3D.position.x = playerRightHand.object3D.position.x;
-        }, 1)
-    })
+            // Calculate the relative movement between the initial position and the controller
+            const deltaX = playerRightHand.object3D.position.x - initialPosition.x;
+            const deltaY = playerRightHand.object3D.position.y - initialPosition.y;
+
+            // Update the element's position based on the relative movement
+            element.setAttribute("position", {
+                x: initialPosition.x + deltaX,
+                y: initialPosition.y + deltaY,
+                z: element.getAttribute("position").z // Maintain the current z position
+            });
+        }, 16); // Adjust the interval as needed
+    });
+
     element.addEventListener("mouseup", () => {
         clearInterval(interval);
-    })
+    });
+
     element.addEventListener("mouseleave", () => {
         clearInterval(interval);
-    })
+    });
 }
