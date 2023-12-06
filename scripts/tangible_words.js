@@ -2,17 +2,16 @@ let scene = document.querySelector("a-scene");
 let assets = document.querySelector("a-assets");
 let playerRightHand = document.getElementById("right-hand");
 
+let lettersElementIdArray = [];
+
 function shuffleString(inputString) {
-    // Convert the string to an array of characters
     const characters = inputString.split('');
 
-    // Shuffle the array using Fisher-Yates algorithm
     for (let i = characters.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [characters[i], characters[j]] = [characters[j], characters[i]];
     }
 
-    // Convert the shuffled array back to a string
     const shuffledString = characters.join('');
     return shuffledString;
 }
@@ -41,11 +40,12 @@ function getIndividualLetters(str) {
                 gltf-model="#${lettersArray[i]}"
                 rotation="90 0 0"
                 position="${i * .4 - 1} ${yPos} -2"
-                onclick="grabLetter(id_${lettersArray[i]}_${i})"
                 animation="property: scale; dur: 1; easing: easeInOutQuad; from: 1 1 1; to: 1.1 1.1 1.1; startEvents: mouseenter"
                 animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 1.1 1.1 1.1; to: 1 1 1; startEvents: mouseleave"
             ></a-entity>
             `;
+
+            lettersElementIdArray.push(`id_${lettersArray[i]}_${i}`)
         } else if (lettersArray[i] === lettersArray[i].toLowerCase()) {
             assetSrc.setAttribute("id", `${lettersArray[i]}_`);
             assetSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters/${lettersArray[i]}_.glb`);
@@ -57,11 +57,12 @@ function getIndividualLetters(str) {
                 gltf-model="#${lettersArray[i]}_"
                 rotation="90 0 0"
                 position="${i * .4 - 1} ${yPos} -2"
-                onclick="grabLetter(id_${lettersArray[i]}_${i})"
                 animation="property: scale; dur: 1; easing: easeInOutQuad; from: 1 1 1; to: 1.1 1.1 1.1; startEvents: mouseenter"
                 animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 1.1 1.1 1.1; to: 1 1 1; startEvents: mouseleave"
                 ></a-entity>
             `;
+
+            lettersElementIdArray.push(`id_${lettersArray[i]}_${i}`)
         }
 
         letterModel.innerHTML = htmlString;
@@ -82,7 +83,7 @@ function getDictionaryDefinition() {
         alert("Please enter a word.");
         return;
     }
-    
+
     fetch(`${DicionaryApiEndpoint}${word}?key=${DicionaryApiKey}`)
         .then((response) => response.json())
         .then((data) => {
@@ -97,17 +98,17 @@ function getDictionaryDefinition() {
             console.log("Error fetching word:", error)
             displayDefinition("No definition found.");
         });
-    }
-    
-    function displayDefinition(definition) {
-        document.getElementById("definition-container").innerText = definition;
-    }
+}
 
-    
+function displayDefinition(definition) {
+    document.getElementById("definition-container").innerText = definition;
+}
+
+
 function getRandomWord2() {
     fetch("https://random-word-api.herokuapp.com/word")
-    .then((response) => response.json())
-    .then((data) => {
+        .then((response) => response.json())
+        .then((data) => {
             const word = data[0];
             displayWord2(word);
         })
@@ -115,89 +116,45 @@ function getRandomWord2() {
             console.error("Error fetching word:", error)
             displayWord2(error);
         });
-    }
-    
-    function displayWord(word) {
-        document.getElementById("word-container").innerText = word;
+}
+
+function displayWord(word) {
+    document.getElementById("word-container").innerText = word;
 }
 
 let inputString = "Banana";
 getIndividualLetters(inputString);
 
-let grabLetter = (id) => {
-    console.log(id);
-    // console.log(id.object3D.position);
-    // console.log(playerRightHand.object3D.position);
-    id.addEventListener("mousemove", () => {
-        console.log("teste")
+let currentIndex = 0;
+let dragObject = (object) => {
+    object.addEventListener("mousedown", () => {
+        let posX = object.object3D.position.x + playerRightHand.object3D.position.x
+        let posY = object.object3D.position.y + playerRightHand.object3D.position.y
+        let posZ = object.object3D.position.z
+        console.log(object.object3D.position);
+        object.setAttribute('position', { x: posX, y: posY, z: posZ });
     })
-    setInterval(() => {
-        id.object3D.position.x += playerRightHand.object3D.position.x;
-    }, 1)
 }
 
-AFRAME.registerComponent('grabbable', {
-    init: function () {
-        this.el.addEventListener('mousedown', this.grabObject.bind(this));
-        this.el.addEventListener('mouseup', this.releaseObject.bind(this));
-    },
-    grabObject: function () {
-        this.el.setAttribute('kinematic-body', 'enabled', false);
-        this.el.setAttribute('dynamic-body', 'enabled', true);
-    },
-    releaseObject: function () {
-        this.el.setAttribute('kinematic-body', 'enabled', true);
-        this.el.setAttribute('dynamic-body', 'enabled', false);
-    },
-});
+function updatePosition() {
+    // Update position for the current element
+    if (currentIndex < lettersElementIdArray.length) {
+        const element = lettersElementIdArray[currentIndex];
+        let tagElement = document.getElementById(element)
+        dragObject(tagElement);
+        // let posX = tagElement.object3D.position.x + playerRightHand.object3D.position.x
+        // let posY = tagElement.object3D.position.y + playerRightHand.object3D.position.y
+        // let posZ = tagElement.object3D.position.z
+        // tagElement.setAttribute('position', { x: , y: , z:  });
+        // console.log(tagElement.object3D.position.x)
+        currentIndex++;
+    } else {
+        currentIndex = 0; // Reset to the beginning when reaching the end
+    }
 
-AFRAME.registerComponent('stretchable', {
-    init: function () {
-        this.originalScale = this.el.getAttribute('scale');
-        this.el.addEventListener('stretchstart', this.stretchStart.bind(this));
-        this.el.addEventListener('stretchend', this.stretchEnd.bind(this));
-    },
-    stretchStart: function (event) {
-        this.stretched = true;
-    },
-    stretchEnd: function (event) {
-        this.stretched = false;
-    },
-    tick: function () {
-        if (this.stretched) {
-            const scale = this.el.getAttribute('scale');
-            scale.x = this.originalScale.x * event.detail.stretch;
-            scale.y = this.originalScale.y * event.detail.stretch;
-            scale.z = this.originalScale.z * event.detail.stretch;
-            this.el.setAttribute('scale', scale);
-        }
-    },
-});
+    // Request the next animation frame
+    requestAnimationFrame(updatePosition);
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    const movableObject = document.getElementById('movableObject');
-    let isDragging = false;
-
-    movableObject.addEventListener('mousedown', function () {
-        isDragging = true;
-    });
-
-    movableObject.addEventListener('mouseup', function () {
-        isDragging = false;
-    });
-
-    document.addEventListener('controllerconnected', function (event) {
-        const controller = event.detail;
-        const hand = controller.getAttribute('hand');
-        const handEntity = document.getElementById(hand);
-
-        handEntity.addEventListener('axismove', function (event) {
-            if (isDragging) {
-                const position = movableObject.getAttribute('position');
-                position.x += event.detail.axis[0] * 0.1; // Adjust the speed as needed
-                position.y += event.detail.axis[1] * 0.1;
-                movableObject.setAttribute('position', position);
-            }
-        });
-    });
-});
+// Start the animation loop
+updatePosition();
