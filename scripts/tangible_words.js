@@ -136,42 +136,26 @@ getIndividualLetters(inputString);
 for (let i = 0; i < lettersElementIdArray.length; i++) {
     let element = document.getElementById(lettersElementIdArray[i]);
     let interval;
-    let initialRotation;
 
     element.addEventListener("mousedown", () => {
-        // Store the initial rotation of the controller
-        initialRotation = { ...playerRightHand.object3D.rotation };
-
+        // Start moving the element with the laser pointer
         interval = setInterval(() => {
-            // Calculate the relative rotation between the initial rotation and the current rotation of the controller
-            const deltaRotationX = playerRightHand.object3D.rotation.x - initialRotation.x;
-            const deltaRotationY = playerRightHand.object3D.rotation.y - initialRotation.y;
-            const deltaRotationZ = playerRightHand.object3D.rotation.z - initialRotation.z;
+            // Get the laser pointer position in world coordinates
+            const laserPosition = playerRightHand.components['laser-controls'].raycaster.ray.origin;
 
-            // Update the element's rotation based on the relative rotation
-            element.setAttribute("rotation", {
-                x: initialRotation.x + deltaRotationX,
-                y: initialRotation.y + deltaRotationY,
-                z: initialRotation.z + deltaRotationZ,
-            });
-
-            // Update the element's position based on the laser orientation
-            const laserOrientation = new THREE.Vector3(0, 0, -1);
-            laserOrientation.applyQuaternion(playerRightHand.object3D.quaternion);
-            const newPosition = laserOrientation.multiplyScalar(2); // Adjust the distance as needed
-            element.setAttribute("position", {
-                x: newPosition.x,
-                y: newPosition.y,
-                z: element.getAttribute("position").z, // Maintain the current z position
-            });
-        }, 16); // Adjust the interval as needed
+            // Update the element's position based on the laser pointer
+            element.object3D.position.x = laserPosition.x;
+            element.object3D.position.y = laserPosition.y;
+        }, 16); // Use a suitable interval, e.g., 60 FPS
     });
 
     element.addEventListener("mouseup", () => {
+        // Stop moving the element when the mouse is released
         clearInterval(interval);
     });
 
     element.addEventListener("mouseleave", () => {
+        // Stop moving the element when the mouse leaves the element
         clearInterval(interval);
     });
 }
