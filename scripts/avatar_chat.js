@@ -14,10 +14,6 @@ function calculateDistance(x1, y1, x2, y2) {
     return distance;
 }
 
-// setTimeout(() => {
-//     console.clear()
-// }, 5000)
-
 setInterval(() => {
     const distance = calculateDistance(playerCamera.getAttribute("position").x, playerCamera.getAttribute("position").z, avatar.getAttribute("position").x, avatar.getAttribute("position").z);
     if (distance < 4) {

@@ -122,6 +122,14 @@ function displayWord(word) {
     document.getElementById("word-container").innerText = word;
 }
 
+function calculateDistance(x1, y1, x2, y2) {
+    const deltaX = x2 - x1;
+    const deltaY = y2 - y1;
+
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    return distance;
+}
+
 let inputString = "Banana";
 getIndividualLetters(inputString);
 
@@ -131,7 +139,7 @@ for (let i = 0; i < lettersElementIdArray.length; i++){
     let interval;
     element.addEventListener("mousedown", () => {
         interval = setInterval(() => {
-            element.object3D.position.x += playerRightHand.object3D.position.x;
+            element.object3D.position.x = playerRightHand.object3D.position.x + (playerRightHand.object3D.position.x - element.object3D.position.x);
         }, 1)
     })
     element.addEventListener("mouseup", () => {
