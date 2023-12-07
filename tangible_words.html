@@ -55,22 +55,22 @@
           position="0 1.6 0"
           camera
           wasd-controls
-          drag-controls="objects: .draggable"
           look-controls
-          orbit-controls="initialPosition: 0 5 15"
-        >
+          >
         </a-entity>
         <!-- hand controls -->
         <a-entity
-          id="left-hand"
-          super-hands
-          oculus-touch-controls="hand: left"
+        id="left-hand"
+        super-hands
+        oculus-touch-controls="hand: left"
         ></a-entity>
         <a-entity
-          id="right-hand"
-          super-hands
-          oculus-touch-controls="hand: right"
-          laser-controls="hand: right"
+        id="right-hand"
+        super-hands
+        oculus-touch-controls="hand: right"
+        laser-controls="hand: right"
+        drag-controls="objects: .draggable"
+        orbit-controls="initialPosition: 0 5 15"
         >
         </a-entity>
       </a-entity>
