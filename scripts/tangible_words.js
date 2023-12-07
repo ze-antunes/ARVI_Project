@@ -170,4 +170,4 @@ let sceneEl = document.querySelector('a-scene');
     }
 }
 
-console.log("teste")
+// console.log("teste")
