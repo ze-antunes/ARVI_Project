@@ -151,7 +151,7 @@ getIndividualLetters(inputString);
 
 let sceneEl = document.querySelector('a-scene');
 {
-    let el = sceneEl.querySelector('[right-hand]');
+    let el = sceneEl.querySelector('[player]');
     el.addEventListener('drag-controls:changed', event => {
         event.target.setAttribute('orbit-controls', 'enabled', !event.detail.active);
     });

@@ -48,7 +48,11 @@
       ></a-light>
 
       <!-- camera rig -->
-      <a-entity id="player">
+      <a-entity
+        id="player"
+        drag-controls="objects: .draggable"
+        orbit-controls="initialPosition: 0 5 15"
+      >
         <!-- camera -->
         <a-entity
           id="camera"
@@ -56,21 +60,19 @@
           camera
           wasd-controls
           look-controls
-          >
+        >
         </a-entity>
         <!-- hand controls -->
         <a-entity
-        id="left-hand"
-        super-hands
-        oculus-touch-controls="hand: left"
+          id="left-hand"
+          super-hands
+          oculus-touch-controls="hand: left"
         ></a-entity>
         <a-entity
-        id="right-hand"
-        super-hands
-        oculus-touch-controls="hand: right"
-        laser-controls="hand: right"
-        drag-controls="objects: .draggable"
-        orbit-controls="initialPosition: 0 5 15"
+          id="right-hand"
+          super-hands
+          oculus-touch-controls="hand: right"
+          laser-controls="hand: right"
         >
         </a-entity>
       </a-entity>
