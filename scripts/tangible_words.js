@@ -133,21 +133,21 @@ function calculateDistance(x1, y1, x2, y2) {
 let inputString = "Banana";
 getIndividualLetters(inputString);
 
-setInterval(() => {
-    for (let i = 0; i < letterModelsID.length; i++) {
-        let element = document.getElementById(letterModelsID[i])
-        // console.log(element.object3D.position)
-        // let posX = element.object3D.position.x
-        // let posY = element.object3D.position.y
-        // let posZ = element.object3D.position.z
-        // element.object3D.position.x = posX
-        // element.object3D.position.y = posY
-        // element.object3D.position.z = posZ
-        element.addEventListener("mousedown", (event) => {
-            console.log("teste")
-        });
-    }
-}, 16)
+// setInterval(() => {
+//     for (let i = 0; i < letterModelsID.length; i++) {
+//         let element = document.getElementById(letterModelsID[i])
+//         // console.log(element.object3D.position)
+//         // let posX = element.object3D.position.x
+//         // let posY = element.object3D.position.y
+//         // let posZ = element.object3D.position.z
+//         // element.object3D.position.x = posX
+//         // element.object3D.position.y = posY
+//         // element.object3D.position.z = posZ
+//         element.addEventListener("mousedown", (event) => {
+//             console.log("teste")
+//         });
+//     }
+// }, 16)
 
 let sceneEl = document.querySelector('a-scene');
 {
