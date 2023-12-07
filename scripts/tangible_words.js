@@ -151,7 +151,7 @@ setInterval(() => {
 
 let sceneEl = document.querySelector('a-scene');
 {
-    let el = sceneEl.querySelector('[player]');
+    let el = sceneEl.querySelector('[camera]');
     el.addEventListener('drag-controls:changed', event => {
         event.target.setAttribute('orbit-controls', 'enabled', !event.detail.active);
     });
