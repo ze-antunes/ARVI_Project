@@ -158,15 +158,18 @@ let sceneEl = document.querySelector('a-scene');
 }
 {
     let onDragStart = (event => {
-        event.target.setAttribute('color', 'DeepSkyBlue');
+        // event.target.setAttribute('color', 'DeepSkyBlue');
+        console.log("onDragStart")
     });
     let onDragEnd = (event => {
-        event.target.removeAttribute('color');
+        // event.target.removeAttribute('color');
+        console.log("onDragEnd")
     });
     let els = sceneEl.querySelectorAll('a-box.draggable');
-    for (let el of els) {
-        el.addEventListener('dragstart', onDragStart);
-        el.addEventListener('dragend', onDragEnd);
+    for (let i = 0; i < letterModelsID.length; i++) {
+        let element = document.getElementById(letterModelsID[i])
+        element.addEventListener('dragstart', onDragStart);
+        element.addEventListener('dragend', onDragEnd);
     }
 }
 
