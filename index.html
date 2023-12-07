@@ -14,27 +14,12 @@
   <body>
     <a-scene cursor="rayOrigin: mouse">
       <a-assets>
-        <a-asset-item
-          id="baltazar-obj"
-          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/A.obj"
-        ></a-asset-item>
-        <a-asset-item
-          id="baltazar-mtl"
-          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters_obj/A.mtl"
-        ></a-asset-item>
-        <a-asset-item
-          id="avatar"
-          src="https://raw.githubusercontent.com/ze-antunes/ARVI_Assets/main/3D_Models/smol_ame_-_amelia_watson_holomyth/scene.gltf"
-        ></a-asset-item>
-
         <!--         //IMGS -->
+        <img id="wii_menu" src="./assets/imgs/textures/wii_menu.png" />
+        <img id="link_texture" src="./assets/imgs/textures/link_texture.png" />
         <img
-          id="wii_menu"
-          src="./assets/imgs/textures/wii_menu.png"
-        />
-        <img
-          id="link_texture"
-          src="./assets/imgs/textures/link_texture.png"
+          id="setting_option_texture"
+          src="./assets/imgs/textures/setting_option_texture.png"
         />
         <img
           id="settings_texture"
@@ -171,14 +156,14 @@
             src="#settings_texture"
             width="1"
             height="1"
-            scale="0.33 0.33 0.33"
-            position="2 -0.85 0.1"
+            scale="0.35 0.35 0.35"
+            position="2.05 -0.86 0.1"
             sound__mouseenter="on: mouseenter; src: #click"
             onclick="openSettings()"
             event-set__mouseenter="_target:#settings_title; visible: true"
             event-set__mouseleave="_target:#settings_title; visible: false"
-            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.33 0.33 0.33; to: 0.35 0.35 0.35; startEvents: mouseenter"
-            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0.35; to: 0.33 0.33 0.33; startEvents: mouseleave"
+            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0.35; to: 0.37 0.37 0.37; startEvents: mouseenter"
+            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.37 0.37 0.37; to: 0.35 0.35 0.35; startEvents: mouseleave"
           ></a-circle>
 
           <!-- Settings Menu  -->
@@ -198,6 +183,7 @@
               side="double"
               height=".25"
               width="1.1"
+              onclick="openOptionMenu()"
               color="white"
               sound__mouseenter="on: mouseenter; src: #click"
               animation="property: scale; dur: 1; easing: easeInOutQuad; from: 1 1 1; to: 1.04 1.04 1.04; startEvents: mouseenter"
@@ -209,6 +195,25 @@
                 value="Environment"
                 color="#636363"
                 align="center"
+              ></a-text>
+            </a-plane>
+
+            <a-plane
+              id="openOptionMenu"
+              src="#setting_option_texture"
+              height="0.45"
+              width="1.5"
+              scale="0 0 0"
+              position="3.7 0.7 0.05"
+              color="white"
+            >
+              <a-text
+                position="0 0 0.03"
+                width="4"
+                color="#636363"
+                align="center"
+                value="default"
+                id="env_option"
               ></a-text>
             </a-plane>
 
@@ -298,13 +303,13 @@
             src="#circle_texture"
             width="1"
             height="1"
-            scale="0.33 0.33 0.33"
-            position="-2 -0.85 0.1"
+            scale="0.35 0.35 0.35"
+            position="-2.05 -0.86 0.1"
             sound__mouseenter="on: mouseenter; src: #click"
             event-set__mouseenter="_target:#micro_status_title; visible: true"
             event-set__mouseleave="_target:#micro_status_title; visible: false"
-            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.33 0.33 0.33; to: 0.35 0.35 0.35; startEvents: mouseenter"
-            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0.35; to: 0.33 0.33 0.33; startEvents: mouseleave"
+            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0.35; to: 0.37 0.37 0.37; startEvents: mouseenter"
+            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.37 0.37 0.37; to: 0.35 0.35 0.35; startEvents: mouseleave"
           ></a-circle>
         </a-plane>
         <!-- camera -->
@@ -323,27 +328,12 @@
           oculus-touch-controls="hand: right"
           laser-controls="hand: right"
         >
-          <!-- <a-obj-model
-            src="#baltazar-obj"
-            mtl="#baltazar-mtl"
-            position="0 0 -0.33"
-            rotation="0 90 0"
-            scale="0.5 0.5 0.5"
-          ></a-obj-model>
-          <a-entity
-            gltf-model="#avatar"
-            position="0 0 -0.5"
-            rotation="-90 0 0"
-            scale="0.5 0.5 0.5"
-            animation-mixer="clip: idle"
-          >
-          </a-entity> -->
         </a-entity>
       </a-entity>
     </a-scene>
 
-    <script src="./scripts/index.js"></script>
     <script src="./scripts/changeEnv.js"></script>
+    <script src="./scripts/index.js"></script>
     <!-- <script src="./scripts/microphonesAvailable.js"></script> -->
   </body>
 </html>

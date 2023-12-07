@@ -27,3 +27,21 @@ let openSettings = () => {
         settingsMenu.setAttribute("scale", "0 0 0")
     }
 }
+
+let openOptionMenu = () => {
+    console.log("openOptionMenu");
+    const settingsOptionMenu = document.getElementById('openOptionMenu');
+    const testeEnvOption = document.getElementById('env_option');
+    testeEnvOption.setAttribute("value",backgrounds[currentBackgroundIndex])
+
+
+    // Toggle the open state
+    settingsOptionMenu.open = !settingsOptionMenu.open;
+    console.log(settingsOptionMenu.open);
+
+    if (settingsOptionMenu.open) {
+        settingsOptionMenu.setAttribute("scale", "1 1 1")
+    } else {
+        settingsOptionMenu.setAttribute("scale", "0 0 0")
+    }
+}

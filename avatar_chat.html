@@ -22,13 +22,22 @@
         <img
           id="speechBubbleImg"
           src="./assets/imgs/textures/speech_bubble.png"
-          alt="speech_bubble"
         />
         <img
           id="player_interface_img"
           src="./assets/imgs/textures/player_interface.png"
-          alt="speech_bubble"
         />
+        <img
+          id="circle_texture"
+          src="./assets/imgs/textures/circle_texture.png"
+        />
+
+        <!--         //AUDIO -->
+        <audio
+          id="click"
+          src="./assets/sounds/click-button.mp3"
+          preload="auto"
+        ></audio>
       </a-assets>
 
       <a-light
@@ -96,7 +105,7 @@
             height="1"
           >
             <a-text
-            id="player_voice_input"
+              id="player_voice_input"
               position="0 .2 0"
               width="3"
               value=""
@@ -106,6 +115,19 @@
               anchor="center"
             >
             </a-text>
+
+            <a-circle
+              position="1.16 -0.23 0.01"
+              src="#circle_texture"
+              width="1"
+              height="1"
+              scale="0.2 0.15 0.33"
+              sound__mouseenter="on: mouseenter; src: #click"
+              onclick="openSettings()"
+              animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.2 0.15 0.33; to: 0.21 0.16 0.33; startEvents: mouseenter"
+              animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.21 0.16 0.33; to: 0.2 0.15 0.33; startEvents: mouseleave"
+            >
+            </a-circle>
           </a-plane>
         </a-entity>
         <!-- hand controls -->

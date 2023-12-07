@@ -9,8 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
-    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-drag-controls@1.0.1/index.min.js"></script>
     <title>Tangible Words</title>
   </head>
   <body>
@@ -47,7 +46,7 @@
       ></a-light>
 
       <!-- camera rig -->
-      <a-entity id="player">
+      <a-entity id="player" drag-controls="objects: .draggable">
         <!-- camera -->
         <a-entity
           id="camera"
@@ -58,7 +57,11 @@
         >
         </a-entity>
         <!-- hand controls -->
-        <a-entity id="left-hand" super-hands oculus-touch-controls="hand: left"></a-entity>
+        <a-entity
+          id="left-hand"
+          super-hands
+          oculus-touch-controls="hand: left"
+        ></a-entity>
         <a-entity
           id="right-hand"
           super-hands

@@ -105,7 +105,7 @@ function ajustKerning(str) {
                     // console.log("halfPreviousLetterWidth: ", halfPreviousLetterWidth);
                     // Set the position attribute with the cumulative width
                     cumulativeWidth += dimensions.width / 2 + 0.04 + halfPreviousLetterWidth;  // Accumulate the width
-                    letterModelElement.setAttribute("position", `0 0 -${cumulativeWidth}`);
+                    letterModelElement.setAttribute("position", `0 1.4 -${cumulativeWidth}`);
                     // console.log(letterModelElement.getAttribute("position"))
                     halfPreviousLetterWidth = dimensions.width / 2;
                     // console.log("width ", dimensions.width);
