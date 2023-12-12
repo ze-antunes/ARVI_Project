@@ -43,7 +43,9 @@
         </a-entity>
       </template>
     </a-assets>
+
     <a-sky color="lightblue"></a-sky>
+
     <a-entity>
       <a-entity
         id="player"
@@ -66,10 +68,13 @@
     </a-entity>
     <!-- hover & drag-drop won't have any obvious effect without some additional event handlers or components. See the examples page for more -->
 
+    
     <a-entity
       id="box1"
       networked="template:#box-template;persistent:true;networkId:box;owner:scene"
     ></a-entity>
+
+
   </a-scene>
   <div class="actions">
     <button id="mic-btn" type="button" class="button">Mute Mic</button>
@@ -92,4 +97,6 @@
       });
     }
   </script>
+
+  <script src="./scripts/superhandsTest.js"></script>
 </body>

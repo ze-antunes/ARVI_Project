@@ -34,7 +34,7 @@ request.addEventListener('click', function () {
 })
 
 let postRequestTest = (body) => {
-    fetch('http://127.0.0.1:5000/find-complexity', {
+    fetch('https://arviproject--jprantunes2000.repl.co/find-complexity', {
         method: "POST",
         headers: {
             'Accept': 'application/json',

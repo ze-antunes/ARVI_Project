@@ -120,5 +120,5 @@ function ajustKerning(str) {
 
 
 
-let inputString = "Banana";
+let inputString = "Hello";
 getIndividualLetters(inputString);
