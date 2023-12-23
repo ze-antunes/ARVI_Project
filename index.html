@@ -16,7 +16,22 @@
       <a-assets>
         <!--         //IMGS -->
         <img id="wii_menu" src="./assets/imgs/textures/wii_menu.png" />
-        <img id="link_texture" src="./assets/imgs/textures/link_texture.png" />
+        <img
+          id="ac_link_texture"
+          src="./assets/imgs/textures/ac_link_texture.png"
+        />
+        <img
+          id="rt_link_texture"
+          src="./assets/imgs/textures/rt_link_texture.png"
+        />
+        <img
+          id="tw_link_texture"
+          src="./assets/imgs/textures/tw_link_texture.png"
+        />
+        <img
+          id="wd_link_texture"
+          src="./assets/imgs/textures/wd_link_texture.png"
+        />
         <img
           id="setting_option_texture"
           src="./assets/imgs/textures/setting_option_texture.png"
@@ -33,6 +48,10 @@
           id="side_panels_texture"
           src="./assets/imgs/textures/side_panels_texture.png"
         />
+        <img id="open_icon" src="./assets/imgs/textures/open_icon.png" />
+        <img id="close_icon" src="./assets/imgs/textures/close_icon.png" />
+        <img id="mic_icon" src="./assets/imgs/textures/mic_icon.png" />
+        <img id="mute_mic_icon" src="./assets/imgs/textures/mute_mic_icon.png" />
 
         <!--         //AUDIO -->
         <audio
@@ -55,11 +74,34 @@
 
       <!-- camera rig -->
       <a-entity id="player">
+        <!-- Close/Open Button -->
+        <a-circle
+          id="open_close_btn"
+          src="#circle_texture"
+          width="1"
+          height="1"
+          scale="0.1 0.1 0"
+          sound__mouseenter="on: mouseenter; src: #click"
+          onclick="openMenu()"
+          event-set__mouseenter="_target:#menu_status_title; visible: true"
+          event-set__mouseleave="_target:#menu_status_title; visible: false"
+          animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.1 0.1 0; to: 0.12 0.12 0; startEvents: mouseenter"
+          animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.12 0.12 0; to: 0.1 0.1 0; startEvents: mouseleave"
+        >
+          <a-plane
+            id="open_close_icon"
+            position="0 0 1"
+            src="#close_icon"
+            height="1.5"
+            width="1.5"
+            material="transparent: true"
+          ></a-plane>
+        </a-circle>
+
         <!-- menu screen  -->
         <a-plane
           src="#wii_menu"
-          id="screen"
-          position="0 0 -3"
+          id="wii_screen"
           color="white"
           height="3"
           width="5.3"
@@ -82,7 +124,7 @@
             <a-plane
               height="0.93"
               width="1.2"
-              src="#link_texture"
+              src="#ac_link_texture"
               material="transparent: true"
             >
             </a-plane>
@@ -103,7 +145,7 @@
             <a-plane
               height="0.93"
               width="1.2"
-              src="#link_texture"
+              src="#rt_link_texture"
               material="transparent: true"
             >
             </a-plane>
@@ -124,14 +166,14 @@
             <a-plane
               height="0.93"
               width="1.2"
-              src="#link_texture"
+              src="#tw_link_texture"
               material="transparent: true"
             >
             </a-plane>
           </a-link>
 
           <a-link
-            href="sword_game.html"
+            href="word_duel.html"
             event-set__mouseenter="_target:#link4_title; visible: true"
             event-set__mouseleave="_target:#link4_title; visible: false"
             sound__mouseenter="on: mouseenter; src: #click"
@@ -145,7 +187,7 @@
             <a-plane
               height="0.93"
               width="1.2"
-              src="#link_texture"
+              src="#wd_link_texture"
               material="transparent: true"
             >
             </a-plane>
@@ -156,14 +198,14 @@
             src="#settings_texture"
             width="1"
             height="1"
-            scale="0.35 0.35 0.35"
+            scale="0.35 0.35 0"
             position="2.05 -0.86 0.1"
             sound__mouseenter="on: mouseenter; src: #click"
             onclick="openSettings()"
             event-set__mouseenter="_target:#settings_title; visible: true"
             event-set__mouseleave="_target:#settings_title; visible: false"
-            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0.35; to: 0.37 0.37 0.37; startEvents: mouseenter"
-            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.37 0.37 0.37; to: 0.35 0.35 0.35; startEvents: mouseleave"
+            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0; to: 0.37 0.37 0; startEvents: mouseenter"
+            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.37 0.37 0; to: 0.35 0.35 0; startEvents: mouseleave"
           ></a-circle>
 
           <!-- Settings Menu  -->
@@ -294,8 +336,18 @@
             width="7"
             color="#636363"
             align="center"
-            value="Unmute"
+            value="Mute"
             id="micro_status_title"
+            visible="false"
+          ></a-text>
+
+          <a-text
+            position="0 -1.1 0.03"
+            width="7"
+            color="#636363"
+            align="center"
+            value="Close"
+            id="menu_status_title"
             visible="false"
           ></a-text>
 
@@ -303,15 +355,26 @@
             src="#circle_texture"
             width="1"
             height="1"
-            scale="0.35 0.35 0.35"
+            id="microphone_status_btn"
+            scale="0.35 0.35 0"
             position="-2.05 -0.86 0.1"
             sound__mouseenter="on: mouseenter; src: #click"
             event-set__mouseenter="_target:#micro_status_title; visible: true"
             event-set__mouseleave="_target:#micro_status_title; visible: false"
-            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0.35; to: 0.37 0.37 0.37; startEvents: mouseenter"
-            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.37 0.37 0.37; to: 0.35 0.35 0.35; startEvents: mouseleave"
-          ></a-circle>
+            animation="property: scale; dur: 1; easing: easeInOutQuad; from: 0.35 0.35 0; to: 0.37 0.37 0; startEvents: mouseenter"
+            animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 0.37 0.37 0; to: 0.35 0.35 0; startEvents: mouseleave"
+          >
+            <a-plane
+              id="plane_mic_icon"
+              src="#mic_icon"
+              position="0 0 2"
+              color="black"
+              material="transparent: true"
+            >
+            </a-plane>
+          </a-circle>
         </a-plane>
+        
         <!-- camera -->
         <a-entity
           id="camera"
@@ -333,6 +396,6 @@
     </a-scene>
 
     <script src="./scripts/changeEnv.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/menu.js"></script>
   </body>
 </html>

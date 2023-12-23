@@ -71,8 +71,6 @@ function getIndividualLetters(str) {
     }
 }
 
-
-
 let DicionaryApiKey = "001071f4-41e2-48c6-97cc-04f425b282d1";
 let DicionaryApiEndpoint = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
 

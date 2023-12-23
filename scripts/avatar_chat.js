@@ -23,8 +23,6 @@ setInterval(() => {
     }
 }, 100)
 
-console.log(speechBubble)
-
 function typeText(text) {
     let element = document.getElementById("output");
     element.value = "";
@@ -36,7 +34,7 @@ function typeText(text) {
             element.value = "";
         element.setAttribute("value", element.value += textToType.charAt(index));
         index++;
-        setTimeout(typeNextCharacter, 50); // Adjust the delay (in milliseconds) between characters
+        setTimeout(typeNextCharacter, 23); // Adjust the delay (in milliseconds) between characters
     }
 
     typeNextCharacter();
@@ -74,7 +72,3 @@ function startColorTransition() {
         }
     }, interval);
 }
-
-// setInterval(function () {
-//     startColorTransition();
-// }, 2000);

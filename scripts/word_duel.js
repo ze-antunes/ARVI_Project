@@ -48,7 +48,6 @@ function getIndividualLetters(str) {
         let htmlString;
         if (lettersArray[i] === lettersArray[i].toUpperCase()) {
             assetSrc.setAttribute("id", `${lettersArray[i]}`);
-            // assetSrc.setAttribute("src", `../assets/3D_models/letters/${lettersArray[i]}.glb`);
             assetSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters/${lettersArray[i]}.glb`);
 
             htmlString = `
@@ -61,7 +60,6 @@ function getIndividualLetters(str) {
                             `;
         } else if (lettersArray[i] === lettersArray[i].toLowerCase()) {
             assetSrc.setAttribute("id", `${lettersArray[i]}_`);
-            // assetSrc.setAttribute("src", `../assets/3D_models/letters/${lettersArray[i]}_.glb`);
             assetSrc.setAttribute("src", `https://raw.githubusercontent.com/ze-antunes/ARVI_Project/main/assets/3D_models/letters/${lettersArray[i]}_.glb`);
 
             htmlString = `

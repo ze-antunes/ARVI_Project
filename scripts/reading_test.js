@@ -11,25 +11,12 @@ let speechRecognitionStatus = false;
 let transcript = '';
 
 let lastRandomKey = null;
-let randomText = getRandomText();
-console.log(randomText.body);
-
-let randomText1 = getRandomText();
-console.log(randomText1.body);
-
-let randomText2 = getRandomText();
-console.log(randomText2.body);
-
-let anotherString = "It matters not what someone is born, but what they grow to be.";
-compareStrings(randomText.body, anotherString);
-
-console.log(texts);
+let randomText;
 
 recognition.onresult = function (event) {
     const transcript = event.results[0][0].transcript;
     console.log(transcript);
     // Compare the two strings
-    // compareStrings(randomText.body, anotherString);
     compareStrings(randomText.body, transcript);
 };
 
@@ -69,6 +56,7 @@ function startTimer() {
 function stopTest() {
     console.log("stopTest")
     clearInterval(intervalId);
+    displayText.setAttribute("value", "");
     recognition.stop(); // Stop speech recognition
     minutes = 1;
     seconds = 0;
@@ -132,5 +120,7 @@ let startTest = () => {
     speechRecognitionStatus = true;
     recognition.start();
     startTimer();
+    randomText = getRandomText()
+    displayText.setAttribute("value", randomText.body);
     startButton.setAttribute("onclick", "");
 }
