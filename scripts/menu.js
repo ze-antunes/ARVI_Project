@@ -5,6 +5,7 @@ let microStatusText = document.getElementById("micro_status_title");
 let microIcon = document.getElementById("plane_mic_icon");
 let openCloseBtn = document.getElementById("open_close_btn");
 let openCloseIcon = document.getElementById("open_close_icon");
+let homeBtn = document.getElementById("home_button");
 
 // Get the current URL
 const currentURL = window.location.href;
@@ -12,10 +13,8 @@ const currentURL = window.location.href;
 // Check if the URL contains a specific substring
 if (currentURL.includes("index.html")) {
     menuScreen.open = true;
-    console.log("menuScreen.open = true")
 } else {
     menuScreen.open = false;
-    console.log("menuScreen.open = false")
     menuScreen.setAttribute("scale", "0 0 0")
     $(openCloseIcon).attr('src', '#open_icon');
 }
@@ -25,6 +24,7 @@ let updateMenuPosition = () => {
     setInterval(() => {
         $(menuScreen).attr('position', `${playerCameraMenu.object3D.position.x} 1.6 ${playerCameraMenu.object3D.position.z - 2.5}`);
         $(openCloseBtn).attr('position', `${playerCameraMenu.object3D.position.x - 1.25} 2.3 ${playerCameraMenu.object3D.position.z - 2.45}`);
+        $(homeBtn).attr('position', `${playerCameraMenu.object3D.position.x - 1} 2.3 ${playerCameraMenu.object3D.position.z - 2.45}`);
     }, 1)
 };
 
@@ -79,12 +79,18 @@ microphoneStatusBtn.addEventListener("click", () => {
         microStatusText.setAttribute("value", "Unmute")
         microIcon.setAttribute("src", "#mute_mic_icon")
         clearInterval(recording);
+        if (annyang) {
+            annyang.abort();
+        }
     } else {
         microStatusText.setAttribute("value", "Mute")
         microIcon.setAttribute("src", "#mic_icon")
         recording = setInterval(function () {
             startColorTransition();
         }, 3000);
+        if (annyang) {
+            annyang.start();
+        }
     }
 })
 
@@ -93,7 +99,7 @@ function startColorTransition() {
     const duration = 3000; // Transition duration in milliseconds
     const steps = 50; // Number of steps for the transition
     const startColor = [255, 0, 0]; // Red (RGB)
-    const endColor = [0, 0, 0]; // Black (RGB)
+    const endColor = [149, 149, 149]; // Gray (RGB)
 
     const colorStep = [
         (endColor[0] - startColor[0]) / steps,

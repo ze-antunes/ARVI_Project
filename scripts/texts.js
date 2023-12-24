@@ -28,7 +28,7 @@ let texts = {
     text5: {
         title: "He Wishes for the Cloths of Heaven",
         author: "W.B. Yeats",
-        body: "But I, being poor, have only my dreams;/n I have spread my dreams under your feet;/n Tread softly because you tread on my dreams.",
+        body: "But I, being poor, have only my dreams; I have spread my dreams under your feet; Tread softly because you tread on my dreams.",
         info: "Not being satisfied with roses or diamonds, in this poem Yeats suggests that, if he had access them, he would lay out the heavens for his love to walk on. In his reference to ‘dreams’, he admits that he has little to offer but nonetheless pleads a gentle reception."
     },
     text6: {
@@ -40,13 +40,13 @@ let texts = {
     text7: {
         title: "Romeo and Juliet",
         author: "William Shakespeare",
-        body: "But soft! What light through yonder window breaks?/n It is the east, and Juliet is the sun.",
+        body: "But soft! What light through yonder window breaks? It is the east, and Juliet is the sun.",
         info: "Maybe the most famous love story of all time, Romeo and Juliet’s ill-fated affair is known to most of us. The beautiful quote above is the start of Romeo’s comparison of Juliet to the sunlight as she leans over her balcony."
     },
     text8: {
         title: "Ulysses",
         author: "Alfred Lord Tennyson",
-        body: "Made weak by time and fate, but strong in will /nTo strive, to seek, to find, and not to yield.",
+        body: "Made weak by time and fate, but strong in will To strive, to seek, to find, and not to yield.",
         info: "In this poem Ulysses, of Troy fame and also known as Odysseus, has completed his ten-year voyage home to Ithaca from Troy and is considering his future as an older man. He has realised that he is now facing a different kind of battle, not against enemies, but against the inevitable process of aging."
     },
     text9: {

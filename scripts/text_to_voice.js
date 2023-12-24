@@ -45,8 +45,8 @@ voiceSelect.addEventListener("change", () => {
 });
 
 document.getElementById("listenBttn").addEventListener('click', () => {
-    speech.text = test;
-    typeText(test)
+    speech.text = text;
+    typeText(text)
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(speech);
 });

@@ -16,7 +16,7 @@ function calculateDistance(x1, y1, x2, y2) {
 
 setInterval(() => {
     const distance = calculateDistance(playerCamera.getAttribute("position").x, playerCamera.getAttribute("position").z, avatar.getAttribute("position").x, avatar.getAttribute("position").z);
-    if (distance < 4) {
+    if (distance < 5.5) {
         speechBubble.setAttribute("visible", true)
     } else if (distance > 4.1) {
         speechBubble.setAttribute("visible", false)

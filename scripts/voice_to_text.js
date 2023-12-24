@@ -1,12 +1,11 @@
 let click_to_record = document.getElementById("click_to_record")
 let request = document.getElementById("request")
-let test;
+let text;
 
 
 let voiceText = "Who was the F1 Champion in the year 2000?"
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("teste annyang")
     // Check if the browser supports the Web Audio API
     if (!('webkitSpeechRecognition' in window)) {
         alert('Web Speech API is not supported in this browser. Please use a different browser.');
@@ -27,27 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-document.addEventListener("keydown", function (event) {
-    switch (event.key) {
-        case "o":
-            annyang.addCommands({
-                'hello': function () {
-                    console.log('Hello!');
-                },
-            });
-
-            annyang.start();
-            break;
-        case "p":
-            annyang.removeCommands();
-            annyang.abort();
-            break;
-        default:
-            // Handle other key presses if needed
-            break;
-    }
-});
-
 request.addEventListener('click', function () {
     fetchData(voiceText);
 })
@@ -58,7 +36,7 @@ let fetchData = (body) => {
 
     // Record the start time
     const startTime = new Date().getTime();
-    
+
     fetch('https://arviproject--jprantunes2000.repl.co/find-complexity', {
         method: "POST",
         headers: {
@@ -86,8 +64,8 @@ let fetchData = (body) => {
             //--------------
             console.log(responseData)
             speech.text = responseData.data;
-            test = responseData.data;
-            typeText(test)
+            text = responseData.data;
+            typeText(text)
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(speech);
             window.speechSynthesis.onerror = function (event) {
