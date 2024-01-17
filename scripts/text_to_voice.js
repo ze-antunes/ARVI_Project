@@ -35,7 +35,6 @@ window.speechSynthesis.onvoiceschanged = () => {
 
 speech.onend = function (event) {
     console.log('Speech ended after ' + event.elapsedTime + ' milliseconds.');
-    // Your custom logic after speech ends
     // Update the selected index of the voice dropdown
     setSelectedVoiceIndex();
 };
