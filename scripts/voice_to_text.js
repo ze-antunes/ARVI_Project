@@ -1,8 +1,6 @@
 let click_to_record = document.getElementById("click_to_record")
 let request = document.getElementById("request")
 let text;
-
-
 let voiceText = "Who was the F1 Champion in the year 2000?"
 
 document.addEventListener('DOMContentLoaded', function () {
