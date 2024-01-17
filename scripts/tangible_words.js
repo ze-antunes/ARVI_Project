@@ -2,6 +2,7 @@ let scene = document.querySelector("a-scene");
 let assets = document.querySelector("a-assets");
 let playerRightHand = document.getElementById("right-hand");
 let entityId = '';
+let word; 
 
 let letterModelsID = [];
 
@@ -136,12 +137,14 @@ function getRandomWord() {
     fetch("https://random-word-api.herokuapp.com/word")
         .then((response) => response.json())
         .then((data) => {
-            let word = data[0];
-            displayWord(word);
+            word = data[0];
+            console.log(word)
+            getIndividualLetters(word);
+            // displayWord(word);
         })
         .catch((error) => {
             console.error("Error fetching word:", error);
-            displayWord(error);
+            // displayWord(error);
         });
 }
 
@@ -160,8 +163,8 @@ function calculateDistance(x1, y1, x2, y2) {
 }
 
 // Initial input string
-let inputString = "Banana";
-getIndividualLetters(inputString);
+// let inputString = "Banana";
+// getIndividualLetters(inputString);
 
 // Event listeners for drag controls
 let sceneEl = document.querySelector('a-scene');
@@ -187,3 +190,5 @@ let sceneEl = document.querySelector('a-scene');
         element.addEventListener('dragend', onDragEnd);
     }
 }
+
+getRandomWord()
