@@ -3,6 +3,7 @@ let playerLeftHand = document.getElementById("left-hand");
 let playerRightHand = document.getElementById("right-hand");
 let scene = document.querySelector("a-scene");
 let assets = document.querySelector("a-assets");
+let letterModel;
 
 let getModelDimensions = (letterModelID) => {
     return new Promise((resolve, reject) => {
@@ -11,8 +12,8 @@ let getModelDimensions = (letterModelID) => {
             modelEntity.addEventListener('model-loaded', function () {
                 // Access the mesh
                 const mesh = modelEntity.getObject3D('mesh');
-                console.log(modelEntity)
-                console.log(mesh)
+                // console.log(modelEntity)
+                // console.log(mesh)
 
                 // Check if the mesh exists and has geometry
                 if (mesh && mesh.children) {
@@ -44,7 +45,7 @@ function getIndividualLetters(str) {
     // Add each letter separately
     for (let i = 0; i < lettersArray.length; i++) {
         let assetSrc = document.createElement("a-asset-item");
-        let letterModel = document.createElement("a-entity");
+        letterModel = document.createElement("a-entity");
         let htmlString;
         if (lettersArray[i] === lettersArray[i].toUpperCase()) {
             assetSrc.setAttribute("id", `${lettersArray[i]}`);
@@ -74,8 +75,8 @@ function getIndividualLetters(str) {
 
         letterModel.innerHTML = htmlString;
         assets.append(assetSrc);
-        // scene.append(letterModel);
-        playerRightHand.append(letterModel);
+        scene.append(letterModel);
+        // playerRightHand.append(letterModel);
     }
     ajustKerning(str);
 }
@@ -116,7 +117,17 @@ function ajustKerning(str) {
     }
 }
 
-
-
 let inputString = "Hello";
 getIndividualLetters(inputString);
+
+// // Get all elements with the attribute "networked"
+// let networkedElements = document.querySelectorAll('[networked]');
+
+// console.log(networkedElements[1].object3D.position);
+
+// if (networkedElements != null) {
+//     setTimeout(() => {
+//         console.log(networkedElements[1].object3D.position.x);
+//         letterModel.object3D.position.x = letterModel.object3D.position.x + networkedElements[1].object3D.position.x;
+//     }, 15000)
+// }

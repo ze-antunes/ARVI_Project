@@ -2,13 +2,13 @@
 
 ## Geral
 * [x] Alterar o código que usa a API webkitSpeechRecognition para o código que usa o script annyang
-* [ ] Eliminar ficheiros .html e .css de teste
-* [ ] Adicionar Menu de navegação em todas as págs. 
+* [x] Eliminar ficheiros .html e .css de teste
+* [x] Adicionar Menu de navegação em todas as págs. 
   * [x]  [Index Page](./index.html)
-  * [ ]  [Avatar Chat Page](./avatar_chat.html)
-  * [ ]  [Reading Test Page](./reading_test.html)
-  * [ ]  [Tangible Words Page](./tangible_words.html)
-  * [ ]  [Word Duel Page](./sword_game.html)
+  * [x]  [Avatar Chat Page](./avatar_chat.html)
+  * [x]  [Reading Test Page](./reading_test.html)
+  * [x]  [Tangible Words Page](./tangible_words.html)
+  * [x]  [Word Duel Page](./sword_game.html)
 * [ ] Limpar e comentar o código
   * [ ]  [Index Page](./index.html)
   * [ ]  [Avatar Chat Page](./avatar_chat.html)
@@ -29,7 +29,7 @@
 * [ ] Settings - Microfone - Listar microfones disponíveis
 * [ ] Settings - Microfone - Escolher microfone
 * [ ] Settings - Audio - Aumentar e diminuir o audio
-* [ ] Settings - Corrigir menus adicionais 
+* [ ] Settings - Corrigir posição e aparencia dos menus adicionais 
 * [ ] Draggable/Stretchable Menu 
 
 ---

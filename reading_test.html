@@ -62,7 +62,7 @@
         />
         <img id="pause_texture" src="./assets/imgs/textures/pause_button.png" />
         <img id="play_texture" src="./assets/imgs/textures/play_button.png" />
-
+        <img id="home_texture" src="./assets/imgs/textures/home_texture.png" />
         <!--         //AUDIO -->
         <audio
           id="click"
@@ -104,6 +104,29 @@
             material="transparent: true"
           ></a-plane>
         </a-circle>
+
+        <!-- Home Button -->
+        <a-link
+          id="home_button"
+          href="index.html"
+          sound__mouseenter="on: mouseenter; src: #click"
+          poolSize="10"
+          link="visualAspectEnabled:false"
+          side="double"
+          event-set__mouseenter="_target:#home_title; visible: true"
+          event-set__mouseleave="_target:#home_title; visible: false"
+          animation="property: scale; dur: 1; easing: easeInOutQuad; from: 1 1 0; to: 1.13 1.13 0; startEvents: mouseenter"
+          animation__scale="property: scale; dur: 1; easing: easeInOutQuad; from: 1.13 1.13 0; to: 1 1 0; startEvents: mouseleave"
+        >
+          <a-circle
+            id="open_close_btn"
+            src="#home_texture"
+            width="1"
+            height="1"
+            scale="0.1 0.1 0"
+          >
+          </a-circle>
+        </a-link>
 
         <!-- menu screen  -->
         <a-plane
@@ -355,6 +378,16 @@
             align="center"
             value="Close"
             id="menu_status_title"
+            visible="false"
+          ></a-text>
+          
+          <a-text
+            position="0 -1.1 0.03"
+            width="7"
+            color="#636363"
+            align="center"
+            value="Homepage"
+            id="home_title"
             visible="false"
           ></a-text>
 
