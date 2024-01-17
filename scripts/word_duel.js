@@ -75,8 +75,10 @@ function getIndividualLetters(str) {
 
         letterModel.innerHTML = htmlString;
         assets.append(assetSrc);
-        scene.append(letterModel);
-        // playerRightHand.append(letterModel);
+        if (playerRightHand != undefined || playerRightHand != null)
+            playerRightHand.append(letterModel);
+        else
+            scene.append(letterModel);
     }
     ajustKerning(str);
 }
